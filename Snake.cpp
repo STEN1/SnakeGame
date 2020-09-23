@@ -1,7 +1,5 @@
 #include <iostream>
 #include <string>
-#include <vector>
-#include <algorithm>
 #include "Snake.h"
 #include <conio.h>
 #include "ConsoleHelp.h"
@@ -17,19 +15,26 @@ int main()
 	Board board{ 20, 40 };
 	char input{ '0' };
 	COORD cur{ 0, 0 };
-	bool debug = true;
-	std::cout << "WASD to play";
+
+	bool debug = false;
+	for (int i = 0; i < 6; i++)
+	{
+		for (int j = 0; j < 50; j++)
+		{
+			std::cout << ch::colorText(snakeSplash[i][j], 32);
+		}
+	}
+	std::cout << "Press w, a, s or d to play\n";
+
+	// Getting starting direction
+	do {
+		input = _getch();
+	} while (input != 'w' && input != 'a' && input != 's' && input != 'd');
 
 	while (true)
 	{
-		if (!debug)
-		{
-			if (_kbhit())
-			{
-				input = _getch();
-			}
-		}
 
+		// Waits for keypress to move the snake if debug is true
 		if (debug)
 		{
 			do {
@@ -37,6 +42,19 @@ int main()
 			} while (input != 'w' && input != 'a' && input != 's' && input != 'd');
 		}
 
+		// Free movement
+		//if (GetAsyncKeyState(0x57)) snake.i -= 1; //W
+		//if (GetAsyncKeyState(0x53)) snake.i += 1; //S
+		//if (GetAsyncKeyState(0x41)) snake.j -= 1; //A
+		//if (GetAsyncKeyState(0x44)) snake.j += 1; //D
+
+
+
+		// Snake style movement
+		if (_kbhit())
+		{
+			input = _getch();
+		}
 		switch (input)
 		{
 		case 'w':
@@ -50,6 +68,8 @@ int main()
 			break;
 		case 'd':
 			snake.j += 1;
+			break;
+		default:
 			break;
 		}
 
