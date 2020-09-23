@@ -5,8 +5,10 @@
 #include "Snake.h"
 #include <conio.h>
 #include "ConsoleHelp.h"
-
-
+#include <Windows.h>
+#include <chrono>
+#include <thread>
+#include <time.h>
 
 
 int main() 
@@ -14,14 +16,22 @@ int main()
 	Snake snake{ 5, 5 };
 	Board board{ 10, 30 };
 	char input{ '0' };
+	COORD cur{ 0, 0 };
 
 	std::cout << "WASD to play";
 
 	while (true)
 	{
+		if (_kbhit())
+		{
+			input = _getch();
+		}
+
+		/*
 		do {
 			input = _getch();
 		} while (input != 'w' && input != 'a' && input != 's' && input != 'd');
+		*/
 
 		switch (input)
 		{
@@ -45,7 +55,7 @@ int main()
 		if (snake.j < 0) snake.j = board.j;
 		if (snake.j > board.j) snake.j = 0;
 
-		system("cls");
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
 		for (int i = 0; i < board.i; i++)
 		{
 			for (int j = 0; j < board.j; j++)
@@ -72,6 +82,13 @@ int main()
 				}
 			}
 		}
+
+
+
+
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(66));
+		//gameloop ends here
 	}
 
 
