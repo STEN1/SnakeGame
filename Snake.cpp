@@ -14,24 +14,28 @@
 int main() 
 {
 	Snake snake{ 5, 5 };
-	Board board{ 10, 30 };
+	Board board{ 20, 40 };
 	char input{ '0' };
 	COORD cur{ 0, 0 };
-
+	bool debug = true;
 	std::cout << "WASD to play";
 
 	while (true)
 	{
-		if (_kbhit())
+		if (!debug)
 		{
-			input = _getch();
+			if (_kbhit())
+			{
+				input = _getch();
+			}
 		}
 
-		/*
-		do {
-			input = _getch();
-		} while (input != 'w' && input != 'a' && input != 's' && input != 'd');
-		*/
+		if (debug)
+		{
+			do {
+				input = _getch();
+			} while (input != 'w' && input != 'a' && input != 's' && input != 'd');
+		}
 
 		switch (input)
 		{
@@ -50,17 +54,17 @@ int main()
 		}
 
 		//loop around board
-		if (snake.i < 0) snake.i = board.i;
-		if (snake.i > board.i) snake.i = 0;
-		if (snake.j < 0) snake.j = board.j;
-		if (snake.j > board.j) snake.j = 0;
+		if (snake.i < 1) snake.i = board.i - 2;
+		if (snake.i > board.i - 2) snake.i = 1;
+		if (snake.j < 1) snake.j = board.j - 2;
+		if (snake.j > board.j - 2) snake.j = 1;
 
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cur);
 		for (int i = 0; i < board.i; i++)
 		{
 			for (int j = 0; j < board.j; j++)
 			{
-				if (j == 29)
+				if (j == board.j - 1)
 				{
 					std::cout << "#\n";
 				}
@@ -68,7 +72,7 @@ int main()
 				{
 					std::cout << '#';
 				}
-				else if (i == 0 || i == 9)
+				else if (i == 0 || i == board.i -1)
 				{
 					std::cout << '#';
 				}
@@ -83,7 +87,10 @@ int main()
 			}
 		}
 
-
+		if (debug)
+		{
+			std::cout << "Snake.i=" << snake.i << " Snake.j=" << snake.j;
+		}
 
 
 
