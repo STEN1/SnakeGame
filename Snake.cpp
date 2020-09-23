@@ -42,12 +42,12 @@ int main()
 			} while (input != 'w' && input != 'a' && input != 's' && input != 'd');
 		}
 
+
 		// Free movement
 		//if (GetAsyncKeyState(0x57)) snake.i -= 1; //W
 		//if (GetAsyncKeyState(0x53)) snake.i += 1; //S
 		//if (GetAsyncKeyState(0x41)) snake.j -= 1; //A
 		//if (GetAsyncKeyState(0x44)) snake.j += 1; //D
-
 
 
 		// Snake style movement
@@ -72,6 +72,7 @@ int main()
 		default:
 			break;
 		}
+
 
 		//loop around board
 		if (snake.i < 1) snake.i = board.i - 2;
@@ -107,15 +108,15 @@ int main()
 			}
 		}
 
+
 		if (debug)
 		{
 			std::cout << "Snake.i=" << snake.i << " Snake.j=" << snake.j;
 		}
 
 
-
+		// slowing down the game
 		std::this_thread::sleep_for(std::chrono::milliseconds(66));
-		//gameloop ends here
 	}
 
 
