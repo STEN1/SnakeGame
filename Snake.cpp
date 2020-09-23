@@ -19,7 +19,7 @@ int main()
 	bool debug = false;
 	for (int i = 0; i < 6; i++)
 	{
-		for (int j = 0; j < 50; j++)
+		for (int j = 0; j < 27; j++)
 		{
 			std::cout << ch::colorText(snakeSplash[i][j], 32);
 		}
