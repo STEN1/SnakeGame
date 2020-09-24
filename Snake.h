@@ -1,18 +1,18 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <vector>
 
-
-
-struct Snake {
-	int i;
-	int j;
+struct v2int {
+	int x;
+	int y;
 };
 
-struct Board {
-	int i;
-	int j;
-};
+
+bool v2intVectorMatch(int x, int y, std::vector<v2int>);
+
+
+void setApples();
 
 char snakeSplash[6][27]
 {
