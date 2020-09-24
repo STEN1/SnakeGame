@@ -18,5 +18,7 @@ namespace ch { //consoleHelp.cpp
 
 	std::string colorText(char text, int textColor);
 
+
+
 }
 

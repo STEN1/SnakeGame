@@ -233,3 +233,15 @@ void setApples()
 	}
 }
 
+//// functions to use with std::sort()
+//// example sorting a std::vector<v2int>: 
+//// std::sort(someVector.begin(), someVector.end(), sortv2x());
+//bool sortv2intx(const v2int& l, const v2int r)
+//{
+//	return l.x < r.x;
+//}
+//
+//bool sortv2inty(const v2int& l, const v2int r)
+//{
+//	return l.y < r.y;
+//}
